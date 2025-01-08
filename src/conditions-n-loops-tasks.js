@@ -128,8 +128,65 @@ function isIsoscelesTriangle(a, b, c) {
  *  10  => X
  *  26  => XXVI
  */
-function convertToRomanNumerals(/* num */) {
-  throw new Error('Not implemented');
+function convertToRomanNumerals(num) {
+  const ed = num % 10;
+  const dec = num - ed;
+  let result;
+  function getStr(n) {
+    let res;
+    switch (n) {
+      case 1:
+        res = 'I';
+        break;
+      case 2:
+        res = 'II';
+        break;
+      case 3:
+        res = 'III';
+        break;
+      case 4:
+        res = 'IV';
+        break;
+      case 5:
+        res = 'V';
+        break;
+      case 6:
+        res = 'VI';
+        break;
+      case 7:
+        res = 'VII';
+        break;
+      case 8:
+        res = 'VIII';
+        break;
+      case 9:
+        res = 'IX';
+        break;
+      case 10:
+        res = 'X';
+        break;
+      case 20:
+        res = 'XX';
+        break;
+      case 30:
+        res = 'XXX';
+        break;
+      default:
+        res = '';
+        break;
+    }
+    return res;
+  }
+  if (ed !== 0) {
+    if (dec > 0) {
+      result = getStr(dec) + getStr(ed);
+    } else {
+      result = getStr(ed);
+    }
+  } else {
+    result = getStr(num);
+  }
+  return result;
 }
 
 /**
@@ -147,8 +204,66 @@ function convertToRomanNumerals(/* num */) {
  *  '10,5'    => 'one zero point five'
  *  '1950.2'  => 'one nine five zero point two'
  */
-function convertNumberToString(/* numberStr */) {
-  throw new Error('Not implemented');
+function convertNumberToString(numberStr) {
+  const arr = [...numberStr];
+  let result = '';
+  function getStr(n) {
+    let res = '';
+    switch (n) {
+      case ',':
+        res += 'point';
+        break;
+      case '.':
+        res += 'point';
+        break;
+      case '-':
+        res += 'minus';
+        break;
+      case '0':
+        res += 'zero';
+        break;
+      case '1':
+        res += 'one';
+        break;
+      case '2':
+        res += 'two';
+        break;
+      case '3':
+        res += 'three';
+        break;
+      case '4':
+        res += 'four';
+        break;
+      case '5':
+        res += 'five';
+        break;
+      case '6':
+        res += 'six';
+        break;
+      case '7':
+        res += 'seven';
+        break;
+      case '8':
+        res += 'eight';
+        break;
+      case '9':
+        res += 'nine';
+        break;
+      default:
+        res += '';
+        break;
+    }
+    return res;
+  }
+  for (let i = 0; i < arr.length; i += 1) {
+    if (i === arr.length - 1) {
+      result += getStr(arr[i]);
+    } else {
+      const s = getStr(arr[i]);
+      result += `${s} `;
+    }
+  }
+  return result;
 }
 
 /**
@@ -181,8 +296,15 @@ function isPalindrome(/* str */) {
  *  'qwerty', 'Q'     => -1
  *  'qwerty', 'p'     => -1
  */
-function getIndexOf(/* str, letter */) {
-  throw new Error('Not implemented');
+function getIndexOf(str, letter) {
+  let result = -1;
+  const arr = [...str];
+  for (let i = 0; i < arr.length; i += 1) {
+    if (arr[i] === letter) {
+      result = i;
+    }
+  }
+  return result;
 }
 
 /**
@@ -200,8 +322,16 @@ function getIndexOf(/* str, letter */) {
  *  12345, 0    => false
  *  12345, 6    => false
  */
-function isContainNumber(/* num, digit */) {
-  throw new Error('Not implemented');
+function isContainNumber(num, digit) {
+  let result = false;
+  const str = `${num}`;
+  const arr = [...str];
+  for (let i = 0; i < arr.length; i += 1) {
+    if (+arr[i] === digit) {
+      result = true;
+    }
+  }
+  return result;
 }
 
 /**
@@ -261,8 +391,15 @@ function getSpiralMatrix(/* size */) {
  *    [7, 8, 9]         [9, 6, 3]
  *  ]                 ]
  */
-function rotateMatrix(/* matrix */) {
-  throw new Error('Not implemented');
+function rotateMatrix(matrix) {
+  const rotatedMatrix = matrix;
+  const tmpMatrix = JSON.parse(JSON.stringify(matrix));
+  for (let i = 0; i < tmpMatrix.length; i += 1) {
+    for (let j = 0; j < tmpMatrix[i].length; j += 1) {
+      rotatedMatrix[i][j] = tmpMatrix[tmpMatrix.length - j - 1][i];
+    }
+  }
+  return rotatedMatrix;
 }
 
 /**
