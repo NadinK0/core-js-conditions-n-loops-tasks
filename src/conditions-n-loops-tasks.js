@@ -278,8 +278,28 @@ function convertNumberToString(numberStr) {
  *  '0123210'   => true
  *  'qweqwe'    => false
  */
-function isPalindrome(/* str */) {
-  throw new Error('Not implemented');
+function isPalindrome(str) {
+  let result = true;
+  const l = Math.floor(str.length / 2);
+  const arr = [...str];
+  const arr1 = [...str];
+  arr1.length = l;
+  const arr2 = [];
+  if (str.length % 2) {
+    for (let i = l + 1; i < arr.length; i += 1) {
+      arr2[i - l - 1] = arr[i];
+    }
+  } else {
+    for (let i = l; i < arr.length; i += 1) {
+      arr2[i - l] = arr[i];
+    }
+  }
+  for (let i = 0; i < arr1.length; i += 1) {
+    if (arr1[i] !== arr2[arr2.length - 1 - i]) {
+      result = false;
+    }
+  }
+  return result;
 }
 
 /**
